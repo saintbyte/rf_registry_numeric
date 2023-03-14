@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Search phone</title>
+</head>
+<body>
+<div id="form_div">
+    Phone: <input type="text" id="phone_input"><button id="search_button">Search</button>
+</div>
+<div id="result_div"></div>
+<script>
+    const endpoint = "/api/find-phone/?phone="
+document.getElementById("search_button").addEventListener("click", async function (event) {
+   event.preventDefault();
+   let request_url = endpoint + document.getElementById("phone_input").value
+   let response = await fetch(request_url);
+   if (response.ok) {
+       let json = await response.json();
+       let result_div = document.createElement("div")
+       document.getElementById("result_div").innerHTML = `
+       <b>Номер:</b> ${json["phone"]}.<br />
+       <b>Код:</b> ${json["registy"]["code"]}<br />
+       <b>Начало:</b> ${json["registy"]["start"]} <br />
+       <b>Конец:</b> ${json["registy"]["end"]} <br />
+       <b>Размер:</b> ${json["registy"]["size"]} <br />
+       <b>Оператор:</b> ${json["registy"]["operator"]} <br />
+       <b>Регион:</b> ${json["registy"]["region"]} <br />
+       <b>ИНН:</b> ${json["registy"]["tax_number"]} <br />
+       `;
+
+   } else {
+      alert("Ошибка HTTP: " + response.status);
+   }
+});
+</script>
+</body>
+</html>
