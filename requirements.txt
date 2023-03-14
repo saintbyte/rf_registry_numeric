@@ -1,0 +1,8 @@
+Django
+django-rest-framework
+drf-yasg
+pre-commit
+psycopg2-binary
+requests
+pandas
+python-dotenv

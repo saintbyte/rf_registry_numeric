@@ -1,0 +1,13 @@
+venv
+__pycache__
+*.pyc
+*.sqlite*
+**/migrations/**
+db/
+/start_db.bash
+/.idea/vcs.xml
+/.idea/inspectionProfiles/profiles_settings.xml
+/.idea/modules.xml
+/.idea/atrax.iml
+/.idea/misc.xml
+.env
